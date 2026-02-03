@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Portfolio</title>
+  <style>
+@font-face {
+  font-family: 'MyCustomFont'; 
+  src: url('fonts/jersey-20-latin-400-normal.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.content h2, p {
+  font-family: "poppins";
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #fff;
+  color: #111;
+  line-height: 1.6;
+  font-family: 'MyCustomFont', Arial, sans-serif;
+}
+
+/* Navbar */
+nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 20px 50px;
+  background-color: #FD1D1D;
+}
+
+nav a {
+  margin-left: 30px;
+  text-decoration: none;
+  font-size: 16px;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+/* Hero Section */
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 60px 10%;
+}
+
+.hero-text h1 {
+  font-size: 48px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.hero-text h1 span {
+  color: #ff2d00;
+}
+
+.btn {
+  display: inline-block;
+  background: #ff2d00;
+  color: #fff;
+  padding: 12px 25px;
+  margin-top: 20px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+  text-decoration: none;
+  font-family: "poppins";
+}
+
+.btn:hover {
+  background: #111;
+  color: #fff;
+}
+
+.hero-img {
+  position: relative;
+}
+
+.hero-img img {
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  object-fit: cover;
+  z-index: 2;
+  position: relative;
+}
+
+.circle {
+  position: absolute;
+  width: 300px;   /* was 320px */
+  height: 300px;  /* was 320px */
+  border-radius: 50%;
+  background: #ff2d00;
+filter: blur(70px); /* higher value = more blur */
+  top: -10px;     /* was -20px */
+  right: -10px;   /* was -20px */
+  z-index: 1;
+}
+
+/* About Section */
+.about {
+  padding: 80px 10%;
+  background: #ffffff;
+  text-align: center;
+}
+
+.about h2 {
+  font-size: 36px;
+  margin-bottom: 50px;
+  color: #111;
+  position: relative;
+}
+
+.timeline {
+  position: relative;
+  max-width: 800px;
+  margin: auto;
+  padding-left: 30px;
+  border-left: 3px solid #ff2d00;
+  animation: growLine 2s ease forwards;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 50px;
+  text-align: left;
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-item .circle {
+  position: absolute;
+  left: -12px;
+  top: 5px;
+  width: 20px;
+  height: 20px;
+  background: #ff2d00;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  box-shadow: 0 0 10px rgba(255,45,0,0.6);
+  animation: popIn 0.6s ease forwards;
+}
+
+.timeline-item .content {
+  padding-left: 20px;
+}
+
+.timeline-item h3 {
+  font-size: 22px;
+  color: #ff2d00;
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+}
+
+.timeline-item p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #333;
+}
+
+.timeline-item p span {
+  font-style: italic;
+  color: #000000;
+  font-weight: bold;
+}
+
+/* Line grow animation */
+@keyframes growLine {
+  0% { height: 0; }
+  100% { height: 100%; }
+}
+
+/* Circle animation */
+@keyframes popIn {
+  from { transform: scale(0); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Skills Section */
+.skills {
+  padding: 60px 10%;
+  text-align: center;
+}
+
+.skills h2 {
+  font-size: 36px;
+  margin-bottom: 40px;
+}
+
+.skills-list {
+  display: flex;
+  justify-content: flex-start;
+  gap: 30px;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.skill {
+  background: #ff2d00;
+  color: #fff;
+  padding: 1rem;
+  border-radius: 100px;
+  width: 150px;
+  font-weight: bolder;
+  font-family: "poppins";
+}
+
+.skill:hover {
+  color: rgb(255, 255, 255);
+  background: linear-gradient(90deg, rgba(253, 29, 29, 1) 32%, rgba(252, 176, 69, 1) 100%);
+  cursor: pointer;
+}
+
+/* Projects Section */
+.projects {
+  padding: 60px 10%;
+  background: #f9f9f9;
+  text-align: center;
+}
+
+.projects h2 {
+  font-size: 36px;
+  margin-bottom: 40px;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.project {
+  background: #fff;
+  box-shadow: 0 0 20px rgba(255, 111, 0, 0.201);
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.project img {
+  width: 100%;
+  border-radius: 12px;
+}
+
+.project img:hover {
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.482);
+  cursor: pointer;
+}
+
+.project h3 {
+  margin: 15px 0 10px;
+  font-size: 20px;
+  color: #FD1D1D;
+}
+
+.project h3:hover {
+  cursor: pointer;
+}
+
+/* Contact Section */
+.contact {
+  padding: 60px 10%;
+  text-align: center;
+}
+
+.contact h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.contact p {
+  color: #000000;
+  font-family: 'MyCustomFont';
+  font-size: 1.3rem;
+}
+
+.contact a {
+  color: #ffffff;
+  font-family: 'MyCustomFont';
+  text-decoration: none;
+}
+
+.btn-contact a {
+  font-family: 'poppins';
+  font-weight: bolder;
+  letter-spacing: 1px;
+  font-size: 1rem;
+}
+
+.btn-contact {
+  background-color: #FD1D1D;
+  padding: 1rem;
+  border: none;
+  margin-top: 2rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Footer */
+footer {
+  background: #111;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  font-size: 14px;
+}
+
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
+
+/* Tablets and below */
+@media (max-width: 992px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 40px 5%;
+  }
+
+  .hero-text h1 {
+    font-size: 36px;
+  }
+
+  .hero-text p {
+    font-size: 18px;
+  }
+
+  .hero-img {
+    margin-top: 30px;
+  }
+
+  .hero-img img {
+    width: 220px;
+    height: 220px;
+  }
+
+  .circle {
+    width: 240px;
+    height: 240px;
+    top: -10px;
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+/* Mobile screens */
+@media (max-width: 600px) {
+  nav {
+    flex-direction: row;
+    gap: 10px;
+    padding: 15px;
+  }
+
+  nav a {
+    margin-left: 0;
+    font-size: 14px;
+  }
+
+  .hero-text h1 {
+    font-size: 28px;
+  }
+
+  .skills-list {
+    justify-content: center;
+  }
+
+  .skill {
+    /* width: auto; */
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline {
+    margin-left: 20px;
+  }
+
+  .timeline::before {
+    left: 0;
+  }
+
+  .timeline-item::before {
+    left: -20px;
+  }
+}
+
+#typing,p{
+    font-family: "MyCustomFont";
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-text">
+      <h1>Hi, I'm <span>Ritik Sharma</span></h1>
+      <p>I am <span id="typing"></span></p>
+      <a href="https://www.linkedin.com/in/ritik-sharma-35694120b/" target="_blank" class="btn">
+        Connect on LinkedIn
+      </a>
+    </div>
+    <div class="hero-img">
+      <div class="circle"></div>
+      <img  src="./me.jpeg" alt="Ritik Sharma">
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about" id="about">
+    <h2>Education & Experience</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="circle"></div>
+        <div class="content">
+          <h3>Education</h3>
+          <p>BCA, Chandigarh University (2020-2023) <br><span>CGPA: 7.88</span></p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="circle"></div>
+        <div class="content">
+          <h3>Experience</h3>
+          <p>City Manager at Flipkart <br><span>(Sep 2025 - Present)</span></p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="circle"></div>
+        <div class="content">
+          <h3>Internship</h3>
+          <p>Web Designer at Solitaire Infosys <br><span>(Feb 2023 - July 2023)</span></p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="circle"></div>
+        <div class="content">
+          <h3>Training</h3>
+          <p>MERN Training at ThinkNext Technologies <br><span>(Aug 2024 - Jan 2025)</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section class="skills" id="skills">
+    <h2>My Skills</h2>
+    <div class="skills-list">
+      <div class="skill">Web Design</div>
+      <div class="skill">Graphic Design</div>
+      <div class="skill">MERN</div>
+      <div class="skill">Data Analysis</div>
+      <div class="skill">IT Consulting</div>
+      <div class="skill">UI</div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section class="projects" id="projects">
+    <h2>My Projects</h2>
+    <div class="project-grid">
+      <div class="project">
+        <img src="./food.jpg" alt="Project 1">
+        <h3>Creative Graphic Design Solutions for Your Brand</h3>
+      </div>
+      <div class="project">
+        <img src="./front card FINAL.jpg" alt="Project 2">
+        <img src="./back.jpg" alt="Project 2">
+        <h3>Creative Graphic Design Solutions for Your Brand</h3>   
+      </div>
+      <div class="project">
+        <img src="./comic design.jpg" alt="Project 3">
+        <h3>Comic Design and Artwork Services</h3>
+      </div>
+      <div class="project">
+        <img src="./lanidng.jpg" alt="Project 4">
+        <h3>UI/UX Design – Newsletter Subscription Section</h3>
+      </div>
+      <div class="project">
+        <img src="./landing2.jpg" alt="Project 5">
+        <h3>Your Own Landing Webpage</h3>
+      </div>
+      <div class="project">
+        <img src="./portfolio3.jpg" alt="Project 6">
+        <h3>Create Your Portfolio Website/Page</h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact" id="contact">
+    <h2>Contact Me</h2>
+    <p>
+      Email - ritiksharma200210@gmail.com<br>
+      Phone Number - 7009347644
+    </p>
+    <button class="btn-contact">
+      <a href="https://www.linkedin.com/in/ritik-sharma-35694120b/" target="_blank">LinkedIn</a>
+    </button>
+  </section>
+
+  <script>
+    const textArray = ["Mern Developer", "Web Designer", "Data Analyst", "IT Consulting", "Graphics Designer"];
+    let index = 0;
+    let charIndex = 0;
+    let currentText = "";
+    const typingElement = document.getElementById("typing");
+
+    function type() {
+      if (charIndex < textArray[index].length) {
+        currentText += textArray[index][charIndex];
+        typingElement.textContent = currentText;
+        charIndex++;
+        setTimeout(type, 150);
+      } else {
+        index++;
+        if (index < textArray.length) {
+          currentText += " | ";
+          charIndex = 0;
+          setTimeout(type, 500);
+        } else {
+          setTimeout(() => {
+            typingElement.textContent = "";
+            index = 0;
+            charIndex = 0;
+            currentText = "";
+            type();
+          }, 2000);
+        }
+      }
+    }
+    type();
+  </script>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Ritik Sharma | All Rights Reserved</p>
+  </footer>
+
+</body>
+</html>
